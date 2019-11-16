@@ -1,8 +1,8 @@
 # deposit-integration-test
  
-create database name = "cu_bank_db"
+1) create database name = "cu_bank_db"
 
-insert default account 
+2) insert default account 
 
 -- --------------------------------------------------------
 
