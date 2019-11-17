@@ -1,16 +1,17 @@
 <?php namespace Operation;
 
 require_once(__DIR__.'../../outputs/Outputs.php');
-require_once(__DIR__.'../../serviceauthentication/serviceauthentication.php');
-require_once(__DIR__.'../../serviceauthentication/DBConnection.php');
+
+require_once 'serviceAuthenticationStub.php';
+require_once 'dbConnectorStub.php';
 
 use Output\Outputs;
 use Exception;
 use AccountInformationException;
-use serviceauthentication;
-use DBConnection;
+use serviceAuthenticationStub;
+use dbConnectorStub;
 
-class DepositService{
+class DepositServiceStub {
 
     private $accNo;
 
@@ -35,12 +36,12 @@ class DepositService{
         } else { // validate 4. Account no. must have existing            
             try{
                 // Service Authentication
-                $accountInfo = ServiceAuthentication::accountAuthenticationProvider($this->accNo);
+                $accountInfo = ServiceAuthenticationStub::accountAuthenticationProvider($this->accNo);
                 
                 // Deposit
                 $accNo = $accountInfo["accNo"];
                 $currentBal = $accountInfo["accBalance"] + $amount;
-                DBConnection::saveTransaction($accNo, $currentBal);
+                dbConnectorStub::saveTransaction($accNo, $currentBal);
 
                 // Assign output
                 $result->accountNumber = $accNo;
@@ -48,11 +49,10 @@ class DepositService{
                 $result->accountBalance = $currentBal;
                 $billAmount = $accountInfo["accWaterCharge"] +  $accountInfo["accElectricCharge"] +  $accountInfo["accPhoneCharge"];
                 $result->billAmount = $billAmount;
-                // $result->isError = false;
+                $result->isError = false;
             }
             catch(AccountInformationException $e){
                 $result->errorMessage = $e->getMessage();
-
             }
         }
         return $result;
