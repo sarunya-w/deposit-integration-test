@@ -52,6 +52,7 @@ class DepositService{
             }
             catch(AccountInformationException $e){
                 $result->errorMessage = $e->getMessage();
+
             }
         }
         return $result;
