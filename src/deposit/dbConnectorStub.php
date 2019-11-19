@@ -8,22 +8,17 @@ class dbConnectorStub {
     private $accElectricCharge;
     private $accPhoneCharge;
 
-    // public function __construct(string $acctNum,string $pin){
-    //     $this->acctNum = $acctNum;
-    //     $this->pin = $pin;
-    // }
-
     public static function getAccountInfo(string $accNo): array {
 
-        if ($accNo !== '9999999999') {
+        if ($accNo !== '0000000001') {
 			throw new AccountInformationException("Account number : {$accNo} not found.");
         }
         
         $data = array(
-            'accNo' => '9999999999', 
+            'accNo' => '0000000001', 
             'accName' => 'Test Stub Dep 01', 
             'accBalance' => 1000000,
-            'accWaterCharge' => 1011,
+            'accWaterCharge' => 543,
             'accElectricCharge' => 500,
             'accPhoneCharge' => 340
         );
@@ -31,9 +26,7 @@ class dbConnectorStub {
         return $data;
     }
 
-    public static function saveTransaction(string $accNo, int $updatedBalance): bool {        
-        // getAccountInfo($accNo);
-        // setBalance($updatedBalance);        
+    public static function saveTransaction(string $accNo, int $updatedBalance): bool {
         return true;
     }
 

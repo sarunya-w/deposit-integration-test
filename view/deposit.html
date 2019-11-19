@@ -191,13 +191,13 @@
                     },
                     success: function(result) {
                         console.log(JSON.stringify(result))
-                        if (result.errorMessage){ // no error
+                        if (result.errorMessage){ 
                             swal(
                                 'เกิดข้อผิดพลาด!', 
                                 result.errorMessage, 
                                 'error'
                             );                            
-                        } else {
+                        } else { // no error
                             swal(
                                 'ฝากเงินเรียบร้อย!', 
                                 'ยอดเงินคงเหลือ = ' + commaSeparateNumber($amount) +' บาท',                                
