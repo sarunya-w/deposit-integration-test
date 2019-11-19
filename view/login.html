@@ -103,6 +103,7 @@
         $( "#loginForm" ).submit(function( event ) {
               $.ajax({
                   method: "POST",
+                //   url: "src/controller.php", // old
                   url: "../src/controller.php",
                   dataType: "json",
                   data: {
@@ -117,7 +118,8 @@
                     $("#msg").text(result.message);
                 } else{
                     createCookie("authentication",$("#accNo").val(), 1);
-                    window.location.pathname = "/deposit-integration-test/view/main.html"; // fix when integrate
+                    // window.location.pathname = "main"; // old
+                    window.location.pathname = "/deposit-integration-test/view/main.html";
                 }
               }).fail(function(xhr,status,error){
                 swal(

@@ -20,7 +20,7 @@ class DBConnection {
     }
 
     public static function saveTransaction(string $accNo, int $updatedBalance): bool {
-        $con = new mysqli('localhost', 'root', '', 'cu_bank_db');
+        $con = new mysqli('localhost', 'root', '', 'integration');
 
         $stmt = "UPDATE ACCOUNT SET balance = ". $updatedBalance. " WHERE no = ". $accNo;
         $result = $con->query($stmt);
@@ -30,7 +30,7 @@ class DBConnection {
     }
 
     private static function serviceAuthentication(string $accNo): array {
-        $con = new mysqli('localhost', 'root', '', 'cu_bank_db');
+        $con = new mysqli('localhost', 'root', '', 'integration');
 
         $stmt = "SELECT no as accNo, "
             . "name as accName, "
@@ -50,7 +50,7 @@ class DBConnection {
     }
 
     private static function userAuthentication(string $accNo, string $pin): array {
-        $con = new mysqli('localhost', 'root', '', 'cu_bank_db');
+        $con = new mysqli('localhost', 'root', '', 'integration');
 
         $stmt = "SELECT no as accNo, "
             . "name as accName, "
