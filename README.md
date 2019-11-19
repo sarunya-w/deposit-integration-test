@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cu_bank_db`
+-- Database: `integration`
 --
 
 -- --------------------------------------------------------
@@ -43,5 +43,5 @@ CREATE TABLE `Account` (
 
 INSERT INTO `Account` (`no`, `pin`, `name`, `balance`, `waterCharge`, `electricCharge`, `phoneCharge`) VALUES
 ('1212312121', '9999', 'Mary Happy', 1006596, 500, 1290, 560),
-('9999999999', '1111', 'Test', 900000, 500, 199, 222);
+('9999999999', '1111', 'Test Real', 900000, 500, 199, 222);
 COMMIT;
