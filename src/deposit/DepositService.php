@@ -13,6 +13,7 @@ use serviceauthentication;
 use DBConnection;
 use serviceAuthenticationStub; // stub
 use dbConnectorStub; // stub
+use phpDocumentor\Reflection\Types\Boolean;
 
 class DepositService{
 
@@ -25,7 +26,7 @@ class DepositService{
         $this->accNo = $accNo;
     }
 
-    public function DepositService(string $accNo, boolean $isTestAuthStub, boolean $isTestTxStub){
+    public function DepositService(string $accNo,bool $isTestAuthStub,bool $isTestTxStub){
         $this->accNo = $accNo;
         $this->isTestAuthStub = $isTestAuthStub;
         $this->isTestTxStub = $isTestTxStub;
