@@ -34,7 +34,7 @@ final class DepositServiceTest extends TestCase
             ['','0000000001','50'],
             ['','0000000001','5100'],
             //amount not number
-            ['Amount must be numeric!','0000000001','Million'],
+            ['Amount must be numeric!','0000000001',''],
             ['Amount must be numeric!','0000000001','Million'],
 
             //accNo not co,plete

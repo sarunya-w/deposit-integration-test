@@ -38,7 +38,7 @@ class DepositService{
         $result->errorMessage = '';
 
         // validate 1. Amount must be numeric
-        if(!preg_match('/^[0-9]*$/', $amount)){
+        if(!preg_match('/^[0-9]*$/', $amount) || $amount == ''){
             $result->errorMessage = "Amount must be numeric!";
             
         } else if (strlen($this->accNo) != 10){ // validate 2. Account No. must have have 10 digit
