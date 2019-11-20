@@ -21,24 +21,27 @@ class MainDriver {
         echo "::: Input :::<br/>";
         echo "Bank Account No. :".preg_replace('/(\d{1})\-?(\d{3})\-?(\d{3})\-?(\d{3})/', '$1-$2-$3-$4', $this->accNo)."<br/>";
         echo "Amount : ".$this->amount."<br/><br/>";
-        echo "----On Processing---<br/>";
+        echo "----On Processing---<br/><br/>";
 
         // create an object
         $deposit = new DepositService($this->accNo, $this->isTestAuthStub, $this->isTestTxStub);
 
-        // show object properties        
-        $result = json_encode($deposit->deposit($this->amount));
-        echo $result;
-        echo "<br/>";
-
+        echo "::: Output :::<br/>";
+        $result = json_encode($deposit->deposit($this->amount));        
         $result = json_decode($result, true);
+        echo "Bank Account No. :".preg_replace('/(\d{1})\-?(\d{3})\-?(\d{3})\-?(\d{3})/', '$1-$2-$3-$4', $result['accountNumber'])."<br/>";
+        echo "Bank Account Name : ".$result['accountName']."<br/>";
+        echo "Balance : ".$result['accountBalance']."<br/>";
+        echo "Bill Amount : ".$result['billAmount']."<br/>";
+
         if($result['errorMessage']) {
+            echo "Status : ".$result['errorMessage']."<br/>";  
             echo "----Failed---";
-        } else { // no error           
-            echo "----Success---";
+        } else { // no error         
+            echo "Status : Success ^^ <br/>";
         }
-        echo "<br/>";
-    }        
+        echo "--------------------<br/>";
+    }
 }
 echo "Deposit Service Start<br/>";
 
