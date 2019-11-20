@@ -7,26 +7,34 @@ use Operation\DepositService;
 
 final class DepositServiceTest extends TestCase
 {
-
-    public function testDepositWithStub($expected, $accNum, $amount){
-        $depositHandler = new DepositService($accNum,true,true);
-        $output = $depositHandler->deposit($amount);
-        $this->assertEquals($expected, $output->errorMessage);
+    public function testDepositWithStub()
+    {
+        $inputs = $this->inputDataProvider();
+        for ($x = 0;$x < sizeof($inputs);$x++) {
+            $expected = $inputs[$x][0];
+            $accNum = $inputs[$x][1];
+            $amount = $inputs[$x][2];
+            $depositHandler = new DepositService($accNum, true, true);
+            $output = $depositHandler->deposit($amount);
+            $this->assertEquals($expected, $output->errorMessage);
+        }
     }
 
-    public function testDepositWithOutStub($expected, $accNum, $amount){
-        $depositHandler = new DepositService($accNum,true,true);
-        $output = $depositHandler->deposit($amount);
-        $this->assertEquals($expected, $output->errorMessage);
-    }
+    // public function testDepositWithOutStub($expected, $accNum, $amount)
+    // {
+    //     $depositHandler = new DepositService($accNum, true, true);
+    //     $output = $depositHandler->deposit($amount);
+    //     $this->assertEquals($expected, $output->errorMessage);
+    // }
 
-    public function inputDataProvider() {
+    public function inputDataProvider()
+    {
         return[
             //normal
             ['','0000000001','50'],
             ['','0000000001','5100'],
             //amount not number
-            ['Amount must be numeric!','0000000001',''],
+            ['Amount must be numeric!','0000000001','Million'],
             ['Amount must be numeric!','0000000001','Million'],
 
             //accNo not co,plete
